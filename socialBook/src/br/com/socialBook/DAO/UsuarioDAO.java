@@ -15,13 +15,14 @@ public class UsuarioDAO {
 		Connection cnn = ConnectionFactory.getConnection();
 		String query = "SELECT * FROM usuario";
 		ArrayList<Usuario> arUsuario = new ArrayList();
-		
+
 		try {
 			PreparedStatement pStmt = cnn.prepareStatement(query);
 			ResultSet rsUsuario = pStmt.executeQuery();
-			
+
 			while (rsUsuario.next()) {
-				Usuario usuario = new Usuario(rsUsuario.getLong("id"), rsUsuario.getString("nome"), rsUsuario.getString("login"), rsUsuario.getString("senha"), rsUsuario.getString("status"));
+				Usuario usuario = new Usuario(rsUsuario.getLong("id"), rsUsuario.getString("nome"),
+						rsUsuario.getString("login"), rsUsuario.getString("senha"), rsUsuario.getString("status"));
 				arUsuario.add(usuario);
 			}
 			cnn.close();
@@ -30,22 +31,22 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
 	public static Usuario getUsuarioById(int id) {
-		
+
 		String query = "SELECT * FROM usuario WHERE id = ?";
 		Connection cnn = ConnectionFactory.getConnection();
 		Usuario usuarioRetorno = new Usuario();
-		
+
 		try {
 			PreparedStatement pStmt = cnn.prepareStatement(query);
 			pStmt.setInt(1, id);
-			
+
 			ResultSet rsUsuario = pStmt.executeQuery();
-			
+
 			while (rsUsuario.next()) {
 				usuarioRetorno.setId(id);
 				usuarioRetorno.setNome(rsUsuario.getString("nome"));
@@ -53,15 +54,14 @@ public class UsuarioDAO {
 				usuarioRetorno.setSenha(rsUsuario.getString("senha"));
 				usuarioRetorno.setStatus(rsUsuario.getString("status"));
 			}
-			
+
 			rsUsuario.close();
 			cnn.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		return usuarioRetorno;
 	}
 
@@ -69,7 +69,7 @@ public class UsuarioDAO {
 		String query = "DELETE FROM usuario WHERE id = ?";
 		Connection cnn = ConnectionFactory.getConnection();
 		int retorno = 0;
-		
+
 		try {
 			PreparedStatement pStmt = cnn.prepareStatement(query);
 			pStmt.setInt(1, id);
@@ -77,7 +77,7 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return retorno;
 	}
 
@@ -85,7 +85,7 @@ public class UsuarioDAO {
 		String query = "INSERT INTO usuario (nome, login, senha) VALUES (?, ?, ?)";
 		Connection cnn = ConnectionFactory.getConnection();
 		int linhasAfetadas = 0;
-		
+
 		try {
 			PreparedStatement pStmt = cnn.prepareStatement(query);
 			pStmt.setString(1, usuarioSubmit.getNome());
@@ -93,11 +93,12 @@ public class UsuarioDAO {
 			pStmt.setString(3, usuarioSubmit.getSenha());
 			linhasAfetadas = pStmt.executeUpdate();
 			cnn.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return linhasAfetadas;
 	}
+
 
 }

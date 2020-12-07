@@ -25,4 +25,5 @@ public class UsuarioModel {
 		return UsuarioDAO.addUsuario(usuarioSubmit);
 	}
 
+
 }

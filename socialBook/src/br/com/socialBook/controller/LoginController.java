@@ -14,7 +14,7 @@ import org.apache.catalina.connector.Request;
 /**
  * Servlet implementation class LoginController
  */
-@WebServlet("/Login")
+@WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

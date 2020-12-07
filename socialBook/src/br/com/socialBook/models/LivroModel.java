@@ -11,4 +11,8 @@ public class LivroModel {
 		return LivroDAO.listaLivros();
 	}
 
+	public static int cadastraLivro(Livro livroSubmit) {
+		return LivroDAO.cadastraLivro(livroSubmit);
+	}
+
 }

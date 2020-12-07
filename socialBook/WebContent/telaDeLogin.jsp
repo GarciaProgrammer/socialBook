@@ -32,7 +32,7 @@
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="***********">
                   </div>
-                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login">
+                  <input type="submit" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login">
                 </form>
                 <p class="login-card-footer-text"> Não tem uma conta?  <a href="usuario?action=cad" class="text-reset"> Clique aqui para se cadastrar</a></p>
                 <nav class="login-card-footer-nav">
